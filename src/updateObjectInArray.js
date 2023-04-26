@@ -68,7 +68,7 @@ export function coveredTask() {
         return __awaiter(this, void 0, void 0, function* () {
             const copiedArray = [...initArray];
             const result = copiedArray.map((e, i) => {
-                if (key in e && e[key] === value) {
+                if (e[key] === value) {
                     return Object.assign(Object.assign({}, e), patch);
                 }
                 else {
@@ -81,5 +81,5 @@ export function coveredTask() {
     updateObjectInArray(initArray, "id", 2, {
         body: "UPDATED",
         title: "UPDATED",
-    }).then((result => console.log(result)));
+    }).then((result) => console.log(result));
 }

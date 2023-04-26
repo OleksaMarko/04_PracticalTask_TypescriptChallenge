@@ -1,6 +1,5 @@
 export function coveredTask() {
   interface ObjectShape {
-    [key: string]: number | string;
     userId: number;
     id: number;
     title: string;
@@ -64,13 +63,16 @@ export function coveredTask() {
     },
   ];
 
-
-async function updateObjectInArray<T extends Object>(initArray: T[],key: keyof T,value: T[keyof T],patch: Partial<T>): Promise<T[]> {
-    
+  async function updateObjectInArray<T>(
+    initArray: T[],
+    key: keyof T,
+    value: T[keyof T],
+    patch: Partial<T>
+  ): Promise<T[]> {
     const copiedArray = [...initArray];
 
-    const result = copiedArray.map((e , i: number) => {
-      if (key in e && e[key] === value) {
+    const result = copiedArray.map((e, i: number) => {
+      if (e[key] === value) {
         return { ...e, ...patch };
       } else {
         return e;
@@ -83,9 +85,5 @@ async function updateObjectInArray<T extends Object>(initArray: T[],key: keyof T
   updateObjectInArray<ObjectShape>(initArray, "id", 2, {
     body: "UPDATED",
     title: "UPDATED",
-  }).then((result => console.log(result)))
-  
+  }).then((result) => console.log(result));
 }
-
-  
-  
